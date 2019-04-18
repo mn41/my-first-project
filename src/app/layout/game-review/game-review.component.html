@@ -1,0 +1,52 @@
+<h1 class="mat-display-1">{{gameInfo.title}}</h1>
+<mat-divider></mat-divider>
+<br/>
+<div class="centered">
+
+<h3 class="mat-title">Enter review for {{gameInfo.title}}</h3>
+<mat-form-field appearance="outline">
+    <textarea matInput placeholder="Review" [(ngModel)]="reviewText"></textarea>
+</mat-form-field>
+<br/>
+<button mat-raised-button color="primary" (click)="evaluateReview()">Evaluate Review</button>
+<br/>
+<br/>
+<br/>
+<div *ngIf="isLoading">
+    <mat-spinner class="centered" diameter=40></mat-spinner>
+    <p><i>Evaluating Review...</i></p>
+</div>
+<div *ngIf="recommendation">
+    <mat-card [class.recommended]="recommendation.recommended">
+        <mat-card-content>
+                <h3 class="mat-title">Model Prediction</h3>
+                <div *ngIf="recommendation.recommended; else notRecommended">
+                    <span class="b">
+                    <button mat-icon-button>
+                            <mat-icon>thumb_up</mat-icon>
+                        </button>
+                    </span>
+                    <span class="b">
+                        <p>Recommended</p>
+                    </span>
+                </div>
+                <ng-template #notRecommended>
+                    <span class="b">
+                        <button mat-icon-button>
+                                <mat-icon>thumb_down</mat-icon>
+                            </button>
+                        </span>
+                        <span class="b">
+                            <p>Not Recommended</p>
+                        </span>
+                </ng-template>
+        </mat-card-content>
+    </mat-card>
+</div>
+<br/>
+<br/>
+
+<mat-divider></mat-divider>
+<br/>
+<img class="img-responsive" src="{{gameInfo.imageLocation}}">
+</div>

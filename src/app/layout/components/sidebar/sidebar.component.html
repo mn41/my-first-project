@@ -1,0 +1,30 @@
+<div id="sidebar">
+  <mat-nav-list>
+        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/']">
+            <mat-icon class="sidenav-icon">home</mat-icon> {{ 'Home'}}
+        </a>
+        <mat-divider></mat-divider>
+        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/game/208650']">
+            <img class="img-responsive" src='assets/images/batmanlogo.png'> {{ 'Batman Arkham Knight'}}
+        </a>
+      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/game/570']">
+        <img class="img-responsive" src='assets/images/dota2logo.png'> {{ 'Dota 2' }}
+      </a>
+      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/game/271590']">
+        <img class="img-responsive" src='assets/images/gtaVlogo.png'> {{ 'Grand Theft Auto V' }}
+      </a>
+      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/game/275850']">
+        <img class="img-responsive" src='assets/images/nomansskylogo.png'> {{ 'No Man\'s Sky' }}
+      </a>
+      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/game/218620']">
+        <img class="img-responsive" src='assets/images/payday2logo.png'> {{ 'Payday 2'}}
+      </a>
+      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/blank-page']">
+        <img class="img-responsive" src='assets/images/steamlogo.png'> {{ 'Steam Game' }}
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/about']">
+        <mat-icon class="sidenav-icon">info</mat-icon> {{ 'Model Details'}}
+    </a>
+  </mat-nav-list>
+</div>

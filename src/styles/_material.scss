@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Roboto';
+}
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~@angular/material/theming';
+
+$custom-typography: mat-typography-config(
+    $font-family: 'Roboto',
+    $headline: mat-typography-level(32px, 48px, 700),
+);
+@include angular-material-typography($custom-typography);

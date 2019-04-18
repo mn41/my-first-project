@@ -1,0 +1,67 @@
+<h1 class="mat-display-1">Model Details</h1>
+<mat-divider></mat-divider>
+<br/>
+<div class="text">
+
+  <h2 class="mat-title">Preprocessing</h2>
+  <p class="mat-body-1">
+    To create the data for the neural network, I made two separate lists for each group of reviews that I would be testing. Each review group had one list of all of the reviews in that dataset, and another list that either contained a ‘1’ if the review in the corresponding index of the first list was recommended, and a ‘0’ if the corresponding review was not recommended.
+  </p>
+
+  <h2 class="mat-title">Designing the Network</h2>
+  <p class="mat-body-1">
+    I decided to use a recurrent neural network (RNN) over a neural network because uses the output of the neural network as part of the input for the next neural network. This is helpful in understanding the context of the words in a review. A standard neural network would have no knowledge of what the previous and next words are, whereas a recurrent neural network will be able to provide hints to whether the next word is positive or negative.
+  </p>
+  <p class="mat-body-1">
+    A standard recurrent neural network will have a hard time storing long term memory though, as it only adds the immediate past to the present. Therefore, I decided to use a special kind of RNN called a long short-term memory network (LSTM). LSTMs keep track of both long term memory and short term memory, which will help the network understand the context of a word using information gained from words that are both far away and close to the current word.
+
+  </p>
+
+  <h2 class="mat-title">Building the Network:</h2>
+  <p class="mat-body-1">
+    I chose to use a recurrent neural network for this problem. This neural network contained an input layer, an embedding layer, a long short-term memory (LSTM) layer, and an output layer.
+  </p>
+
+  <h2 class="mat-title">Input Layer</h2>
+  <p class="mat-body-1">
+    Each word in every review of the training set was assigned an integer value. The integers for each word in  a review were placed in an array, and an array containing all of the integer arrays was passed to the neural network in batches for the input layer.
+  </p>
+
+  <h2 class="mat-title">Embedding Layer</h2>
+  <p class="mat-body-1">
+      An embedding layer was used to prevent one-hot encoded vectors from being created, which are high dimensional and sparse vectors and would make the network very inefficient. The embedded layer skips the large matrix multiplication that would otherwise be necessary and instead performs an embedded lookup to produce the new vector for whatever word exists in the input layer. This reduces the time it would take to train this model.
+  </p>
+
+  <h2 class="mat-title">LSTM Layer</h2>
+  <p class="mat-body-1">
+      The LSTM layer consisted of a 3 LSTM cells, each with dropout to prevent overfitting. To implement this layer, I created a Tensorflow MultiRNNCell, with each cell being a BasicLSTMCell with a Dropout wrapper. 
+  </p>
+
+  <h2 class="mat-title">Output Layer</h2>
+  <p class="mat-body-1">
+      The neural network would continuing passing on the state from embedding layer and the LSTM layer to next neural network, until the output for the final neural network was reached. This final output was converted to a number between 0 and 1 using a sigmoid function to represent the probability that a review was positive. 
+  </p>
+
+  <h2 class="mat-title">Accuracy</h2>
+  <p class="mat-body-1">
+      The probability that was calculated from the sigmoid function was rounded to either a 0 or 1 to represent whether the review was recommended. This value was then compared to the actual recommendation for the review. The percentage of predictions that were correct was used as the measure of accuracy for the network. Below is a table consisting of the results for the various networks created:
+  </p>
+
+  <table mat-table [dataSource]="myArray" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let game"> {{game.name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="accuracy">
+      <th mat-header-cell *matHeaderCellDef> Accuracy </th>
+      <td mat-cell *matCellDef="let game"> {{game.accuracy}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+  </table>
+</div>
+<br/>
+<mat-divider></mat-divider>
+<br/>
